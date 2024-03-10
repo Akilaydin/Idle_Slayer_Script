@@ -116,6 +116,7 @@ Func Main()
 	; Set Hotkey Bindings
 	HotKeySet("{Home}", "Pause")
 	HotKeySet("{Esc}", "IdleClose")
+	HotKeySet("{Backspace}", "AutoCraftWhetstone")
 	; Create Saving Directory
 	DirCreate("IdleRunnerLogs")
 	; Create GUI
@@ -271,6 +272,15 @@ Func CloseAll()
 		MouseClick("left", 775, 600, 1, 0)
 	EndIf
 EndFunc   ;==>CloseAll
+
+Func AutoCraftWhetstone()
+
+BuyTempItem("0xF8F8E8")
+	; If $bAutoCraftWhetstone Then
+		; BuyTempItem("0x#F8F8E8")
+	; EndIf
+
+EndFunc   ;==>AutoBuyWhetstone
 
 Func RageWhenHorde()
 	Local $bSoulBonusActive = CheckForSoulBonus()

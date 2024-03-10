@@ -19,6 +19,7 @@ Global $bAutoBuyUpgradeState = False, _
 		$bCraftSoulBonusState = False, _
 		$bSkipBonusStageState = False, _
 		$bCraftRagePillState = False, _
+		$bAutoCraftWhetstone = False, _
 		$bCirclePortalsState = False, _
 		$bNoLockpickingState = False, _
 		$bBiDimensionalState = False, _
