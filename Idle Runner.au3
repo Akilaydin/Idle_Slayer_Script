@@ -32,6 +32,7 @@
 #AutoIt3Wrapper_Res_File_Add=Resources\NoLockpicking.jpg, RT_RCDATA, NOLOCKPICKING,0
 #AutoIt3Wrapper_Res_File_Add=Resources\CraftBidimensionalStaff.jpg, RT_RCDATA, BIDIMENSIONAL,0
 #AutoIt3Wrapper_Res_File_Add=Resources\CraftDimensionalStaff.jpg, RT_RCDATA, DIMENSIONAL,0
+#AutoIt3Wrapper_Res_File_Add=Resources\CraftWheatstone.jpg, RT_RCDATA, AUTOCRAFTWHETSTONE,0
 #AutoIt3Wrapper_Res_File_Add=Resources\DisableRage.jpg, RT_RCDATA, DISABLERAGE,0
 #AutoIt3Wrapper_Res_File_Add=Resources\0.jpg, RT_RCDATA, NUM0,0
 #AutoIt3Wrapper_Res_File_Add=Resources\10.jpg, RT_RCDATA, NUM10,0

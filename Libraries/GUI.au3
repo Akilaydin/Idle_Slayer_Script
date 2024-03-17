@@ -36,8 +36,8 @@ Global $iJumpSliderValue = 150, _
 		$iTimer = TimerInit(), _
 		$iTimerFocusGame = TimerInit()
 
-Global $aSettingGlobalVariables[11] = ["bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "iJumpSliderValue", "bNoLockpickingState", "iCirclePortalsCount", "bDimensionalState", "bBiDimensionalState", "bDisableRageState"]
-Global $aSettingCheckBoxes[9] = ["bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bCirclePortalsState", "bNoLockpickingState", "bBiDimensionalState", "bDimensionalState", "bDisableRageState"]
+Global $aSettingGlobalVariables[12] = ["bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bAutoCraftWhetstone", "bCirclePortalsState", "iJumpSliderValue", "bNoLockpickingState", "iCirclePortalsCount", "bDimensionalState", "bBiDimensionalState", "bDisableRageState"]
+Global $aSettingCheckBoxes[10] = ["bAutoBuyUpgradeState", "bCraftSoulBonusState", "bSkipBonusStageState", "bCraftRagePillState", "bAutoCraftWhetstone", "bCirclePortalsState", "bNoLockpickingState", "bBiDimensionalState", "bDimensionalState", "bDisableRageState"]
 
 ; #FUNCTION# ====================================================================================================================
 ; Return values .: Succes - A windows handle
@@ -195,38 +195,45 @@ EndFunc   ;==>CreateMinigamesSheet
 
 
 Func CreateCraftingSheet($hGUIForm, $iTabControl)
-	Local $iTabCrafting = GUICtrlCreateTabItem("Crafting")
-	EventTabSetBkColor($hGUIForm, $iTabControl, 0x36393F)
+    Local $iTabCrafting = GUICtrlCreateTabItem("Crafting")
+    EventTabSetBkColor($hGUIForm, $iTabControl, 0x36393F)
 
-	; Create CraftSoulBonus Checkbox
-	Global $iCheckBoxbCraftSoulBonusState = GUICtrlCreatePic('', 181, 44, 16, 16, $SS_BITMAP + $SS_NOTIFY)
-	GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
-	Local $iCraftComp = GUICtrlCreatePic('', 207, 45, 153, 14, $SS_BITMAP + $SS_NOTIFY)
-	_Resource_SetToCtrlID($iCraftComp, 'SOULBONUS')
-	GUICtrlSetTip(-1, "When there is a Horde/Mega Horde + Soul Bonus, it will craft Souls Compass")
+    ; Create CraftSoulBonus Checkbox
+    Global $iCheckBoxbCraftSoulBonusState = GUICtrlCreatePic('', 181, 44, 16, 16, $SS_BITMAP + $SS_NOTIFY)
+    GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
+    Local $iCraftComp = GUICtrlCreatePic('', 207, 45, 153, 14, $SS_BITMAP + $SS_NOTIFY)
+    _Resource_SetToCtrlID($iCraftComp, 'SOULBONUS')
+    GUICtrlSetTip(-1, "When there is a Horde/Mega Horde + Soul Bonus, it will craft Souls Compass")
 
-	; Craft Bidmensional Stuff
-	Global $iCheckBoxbBiDimensionalState = GUICtrlCreatePic('', 181, 83, 16, 16, $SS_BITMAP + $SS_NOTIFY)
-	GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
-	Local $iCraftBiDimension = GUICtrlCreatePic('', 207, 84, 239, 14, $SS_BITMAP + $SS_NOTIFY)
-	_Resource_SetToCtrlID($iCraftBiDimension, 'BIDIMENSIONAL')
-	GUICtrlSetTip(-1, "Craft BiDimensional item at Megahorde and it will disable it itself after one use")
+    ; Craft Bidmensional Stuff
+    Global $iCheckBoxbBiDimensionalState = GUICtrlCreatePic('', 181, 83, 16, 16, $SS_BITMAP + $SS_NOTIFY)
+    GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
+    Local $iCraftBiDimension = GUICtrlCreatePic('', 207, 84, 239, 14, $SS_BITMAP + $SS_NOTIFY)
+    _Resource_SetToCtrlID($iCraftBiDimension, 'BIDIMENSIONAL')
+    GUICtrlSetTip(-1, "Craft BiDimensional item at Megahorde and it will disable it itself after one use")
 
-	; Craft Dimensional Stuff
-	Global $iCheckBoxbDimensionalState = GUICtrlCreatePic('', 181, 124, 16, 16, $SS_BITMAP + $SS_NOTIFY)
-	GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
-	Local $iCraftDimension = GUICtrlCreatePic('', 207, 124, 221, 14, $SS_BITMAP + $SS_NOTIFY)
-	_Resource_SetToCtrlID($iCraftDimension, 'DIMENSIONAL')
-	GUICtrlSetTip(-1, "Craft Dimensional item at Megahorde and it will disable it itself after one use")
+    ; Craft Dimensional Stuff
+    Global $iCheckBoxbDimensionalState = GUICtrlCreatePic('', 181, 124, 16, 16, $SS_BITMAP + $SS_NOTIFY)
+    GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
+    Local $iCraftDimension = GUICtrlCreatePic('', 207, 124, 221, 14, $SS_BITMAP + $SS_NOTIFY)
+    _Resource_SetToCtrlID($iCraftDimension, 'DIMENSIONAL')
+    GUICtrlSetTip(-1, "Craft Dimensional item at Megahorde and it will disable it itself after one use")
 
-	; Create CraftRagePill Checkbox
-	Global $iCheckBoxbCraftRagePillState = GUICtrlCreatePic('', 450, 44, 16, 16, $SS_BITMAP + $SS_NOTIFY)
-	GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
-	Local $iRage = GUICtrlCreatePic('', 476, 45, 132, 16, $SS_BITMAP + $SS_NOTIFY)
-	_Resource_SetToCtrlID($iRage, 'RAGEPILL')
-	GUICtrlSetTip(-1, "When there is Horde/Mega Horde + Soul Bonus, it will craft Rage Pill")
+    ; Create CraftRagePill Checkbox
+    Global $iCheckBoxbCraftRagePillState = GUICtrlCreatePic('', 450, 44, 16, 16, $SS_BITMAP + $SS_NOTIFY)
+    GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
+    Local $iRage = GUICtrlCreatePic('', 476, 45, 132, 14, $SS_BITMAP + $SS_NOTIFY)
+    _Resource_SetToCtrlID($iRage, 'RAGEPILL')
+    GUICtrlSetTip(-1, "When there is Horde/Mega Horde + Soul Bonus, it will craft Rage Pill")
 
-	Return $iTabCrafting
+    ;Create AutoCraft Whetstone Checkbox
+    Global $iCheckBoxbAutoCraftWhetstoneState = GUICtrlCreatePic('', 450, 84, 16, 16, $SS_BITMAP + $SS_NOTIFY)
+    GUICtrlSetOnEvent(-1, "EventGlobalCheckBox")
+    Local $iAutocraftWhetstone = GUICtrlCreatePic('', 476, 85, 132, 14, $SS_BITMAP + $SS_NOTIFY)
+    _Resource_SetToCtrlID($iAutocraftWhetstone, 'AUTOCRAFTWHETSTONE')
+    GUICtrlSetTip(-1, "Autocraft whetstone.")
+
+    Return $iTabCrafting
 EndFunc   ;==>CreateCraftingSheet
 
 
